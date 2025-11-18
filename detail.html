@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Maternal Record Details</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+        .form-container {
+            max-width: 700px;
+            margin: 50px auto;
+            background-color: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+        .form-title {
+            text-align: center;
+            color: #007bff;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+        /* Make inputs look like plain text for viewing */
+        .view-field {
+            background: transparent;
+            border: none;
+            box-shadow: none;
+            padding-left: 0;
+            color: #212529;
+        }
+        /* Hide default select arrow for a cleaner read-only look */
+        select.form-select.no-arrow {
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+            background-image: none !important;
+        }
+        /* Ensure disabled look remains readable */
+        .view-label { 
+            font-weight: 600; 
+            color: #495057; 
+        }
+        .loading {
+            text-align: center;
+            padding: 50px;
+            color: #6c757d;
+        }
+        .error {
+            color: #dc3545;
+        }
+        .success {
+            color: #155724;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="form-container">
+            <h2 class="form-title">Maternal Health Monitoring Form</h2>
+            <div id="status" class="mb-3 alert" style="display: none;"></div>
+            <form id="recordForm">
+                <div class="file_no">
+                    <label for="fileNumber" class="form-label view-label">File Number</label>
+                    <input type="text" class="form-control w-25 mb-4" id="fileNumber" placeholder="Auto-generated" disabled value="">
+                </div>
+                <h2 class="text-center fw-bold form-title">Mother Details</h2>
+                <div class="row mb-3">
+                    <div class="col">
+                        <label for="motherName" class="form-label view-label">Mother's Full Name</label>
+                        <input type="text" class="form-control view-field" id="motherName" disabled value="">
+                    </div>
+                    <div class="col">
+                        <label for="age" class="form-label view-label">Age</label>
+                        <input type="number" class="form-control view-field" id="age" min="15" max="60" disabled value="">
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <label for="address" class="form-label view-label">Address</label>
+                    <input type="text" class="form-control view-field" id="address" disabled value="">
+                </div>
+
+                <div class="row mb-3">
+                    <div class="col">
+                        <label for="phone" class="form-label view-label">Phone Number</label>
+                        <input type="tel" class="form-control view-field" id="phone" placeholder="+234..." disabled value="">
+                    </div>
+                    <div class="col">
+                        <label for="email" class="form-label view-label">Email</label>
+                        <input type="email" class="form-control view-field" id="email" disabled value="">
+                    </div>
+                </div>
+
+                <div class="row mb-3">
+                    <div class="col">
+                        <label for="bloodGroup" class="form-label view-label">Blood Group</label>
+                        <select id="bloodGroup" class="form-select no-arrow" disabled>
+                            <option value="">-</option>
+                            <option value="A+">A+</option>
+                            <option value="A-">A-</option>
+                            <option value="B+">B+</option>
+                            <option value="B-">B-</option>
+                            <option value="AB+">AB+</option>
+                            <option value="AB-">AB-</option>
+                            <option value="O+">O+</option>
+                            <option value="O-">O-</option>
+                        </select>
+                    </div>
+                    <div class="col">
+                        <label for="genotype" class="form-label view-label">Genotype</label>
+                        <select id="genotype" class="form-select no-arrow" disabled>
+                            <option value="">-</option>
+                            <option value="AA">AA</option>
+                            <option value="AS">AS</option>
+                            <option value="SS">SS</option>
+                            <option value="AC">AC</option>
+                            <option value="SC">SC</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="row mb-3">
+                    <div class="col">
+                        <label for="bloodPressure" class="form-label view-label">Blood Pressure (mmHg)</label>
+                        <input type="text" class="form-control view-field" id="bloodPressure" placeholder="e.g. 120/80" disabled value="">
+                    </div>
+                    <div class="col">
+                        <label for="weight" class="form-label view-label">Weight (kg)</label>
+                        <input type="number" class="form-control view-field" id="weight" step="0.1" disabled value="">
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <label for="pregnancyStage" class="form-label view-label">Pregnancy Stage</label>
+                    <select id="pregnancyStage" class="form-select no-arrow" disabled>
+                        <option value="">-</option>
+                        <option value="first_trimester">First Trimester (0-13 weeks)</option>
+                        <option value="second_trimester">Second Trimester (14-26 weeks)</option>
+                        <option value="third_trimester">Third Trimester (27-40 weeks)</option>
+                    </select>
+                </div>
+                <h2 class="text-center fw-bold form-title">Next of Kin Details</h2>
+                <div class="row mb-3">
+                    <div class="col">
+                        <label for="motherName2" class="form-label view-label">Next Of Kin Full Name</label>
+                        <input type="text" class="form-control view-field" id="motherName2" disabled value="">
+                    </div>
+                    <div class="col">
+                        <label for="phone2" class="form-label view-label">Phone Number</label>
+                        <input type="tel" class="form-control view-field" id="phone2" placeholder="+234..." disabled value="">
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <label for="email2" class="form-label view-label">Email</label>
+                    <input type="email" class="form-control view-field" id="email2" disabled value="">
+                </div>
+
+                <div class="mb-3">
+                    <label for="address2" class="form-label view-label">Address</label>
+                    <input type="text" class="form-control view-field" id="address2" disabled value="">
+                </div>
+
+                <h2 class="text-center fw-bold form-title">Medical Details</h2>
+
+                <div class="mb-3">
+                    <label for="healthCondition" class="form-label view-label">Health Condition / Notes</label>
+                    <textarea class="form-control view-field" id="healthCondition" rows="3"
+                        placeholder="Describe any conditions or observations..." disabled></textarea>
+                    <div class="mt-2"><button type="button" id="viewMoreBtn" class="btn btn-link">View more details</button></div>
+                </div>
+
+                <div class="mb-3">
+                    <label for="doctorName" class="form-label view-label">Doctor / Nurse in Charge</label>
+                    <input type="text" class="form-control view-field" id="doctorName" disabled>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script type="module">
+import { fetchMaternalById } from './js/api.js';
+
+// Helper: read query param from URL
+function getQueryParam(name) {
+    const params = new URLSearchParams(window.location.search);
+    return params.get(name);
+}
+
+async function loadRecord() {
+    const statusEl = document.getElementById('status');
+    const formEl = document.getElementById('recordForm');
+    statusEl.textContent = 'Loading record…';
+    statusEl.classList.add('alert', 'alert-info');
+    statusEl.style.display = 'block';
+    formEl.style.display = 'none';
+
+    // ✅ Get record ID and token
+    const id = getQueryParam('id');
+    const token = localStorage.getItem('token') || localStorage.getItem('mhms_token'); // fallback
+
+    if (!id || !token) {
+        alert('Record ID or token missing. Please return to dashboard.');
+        window.location.href = 'Acess-form.html';
+        return;
+    }
+
+    let record = null;
+    try {
+        const res = await fetchMaternalById(id, token);
+        // Some APIs return { data: record } instead of record directly
+        record = res.data || res;
+        console.log('API Response:', record); // debug
+    } catch (err) {
+        console.error('Failed to load record:', err);
+        alert('Failed to load record. Check console.');
+        return;
+    }
+
+    if (!record) {
+        statusEl.textContent = 'Record not found.';
+        statusEl.classList.remove('alert-info');
+        statusEl.classList.add('alert-warning');
+        return;
+    }
+
+    // ✅ Fill form fields safely
+    document.getElementById('fileNumber').value = record.fileNumber || record._id || 'N/A';
+    document.getElementById('motherName').value =
+        record.fullName?.trim() || record.motherName?.trim() || record.patientName?.trim() || 'N/A';
+    document.getElementById('age').value = record.age || 'N/A';
+    document.getElementById('address').value = record.address || record.homeAddress || 'N/A';
+    document.getElementById('phone').value = record.phone || record.phoneNumber || 'N/A';
+    document.getElementById('email').value = record.email || 'N/A';
+    document.getElementById('bloodGroup').value = record.bloodGroup || '';
+    document.getElementById('genotype').value = record.genotype || '';
+    document.getElementById('bloodPressure').value = record.bloodPressure || '';
+    document.getElementById('weight').value = record.weight || '';
+    document.getElementById('pregnancyStage').value = record.pregnancyStage || '';
+    document.getElementById('motherName2').value =
+        record.nextOfKinName || record.nextOfKinFullName || 'N/A';
+    document.getElementById('phone2').value = record.nextOfKinPhone || record.nextOfKinPhoneNumber || 'N/A';
+    document.getElementById('email2').value = record.nextOfKinEmail || 'N/A';
+    document.getElementById('address2').value = record.nextOfKinAddress || 'N/A';
+    document.getElementById('healthCondition').value =
+        record.conditionNotes || record.notes || record.healthCondition || 'N/A';
+    document.getElementById('doctorName').value =
+        record.doctorInCharge?.fullName || record.doctorName || record.clinician || 'N/A';
+
+    // ✅ Show form and hide status
+    statusEl.style.display = 'none';
+    formEl.style.display = 'block';
+}
+
+// DOM ready
+document.addEventListener('DOMContentLoaded', function () {
+    loadRecord();
+
+    const viewMoreBtn = document.getElementById('viewMoreBtn');
+    const notes = document.getElementById('healthCondition');
+    if (viewMoreBtn && notes) {
+        viewMoreBtn.addEventListener('click', function () {
+            if (notes.style.overflow === 'auto') {
+                notes.style.overflow = '';
+                notes.style.maxHeight = '';
+                viewMoreBtn.textContent = 'View more details';
+            } else {
+                notes.style.overflow = 'auto';
+                notes.style.maxHeight = '400px';
+                viewMoreBtn.textContent = 'Hide details';
+            }
+        });
+    }
+});
+</script>
+
+</body>
+</html>

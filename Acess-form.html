@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Medical Admin Login</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f8ff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .login-container {
+            background-color: white;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 300px;
+            text-align: center;
+        }
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: #007bff;
+            margin-bottom: 20px;
+        }
+        input[type="email"], input[type="password"], input[type="text"] {
+            width: 100%;
+            padding: 10px 40px 10px 10px; /* Extra right padding for eye icon */
+            margin: 10px 0;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            box-sizing: border-box;
+        }
+        .input-group {
+            position: relative;
+            margin: 10px 0;
+        }
+        .eye-icon {
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            cursor: pointer;
+            font-size: 16px;
+            color: #666;
+            width: 20px; /* Fixed width to prevent emoji size shift */
+            text-align: center;
+            line-height: 1;
+        }
+        button {
+            width: 100%;
+            padding: 12px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        button:hover:not(:disabled) {
+            background-color: #0056b3;
+        }
+        button:disabled {
+            background-color: #ccc;
+            cursor: not-allowed;
+        }
+        .forgot-password {
+            margin-top: 15px;
+            font-size: 12px;
+            color: #666;
+            text-decoration: underline;
+            cursor: pointer;
+        }
+        .info-note {
+            margin-top: 20px;
+            font-size: 12px;
+            color: #666;
+            font-style: italic;
+            border-top: 1px solid #eee;
+            padding-top: 10px;
+        }
+        .message {
+            font-size: 14px;
+            margin-top: 10px;
+            padding: 10px;
+            border-radius: 5px;
+            display: none;
+        }
+        .error-message {
+            color: #dc3545;
+            background-color: #f8d7da;
+            border: 1px solid #f5c6cb;
+        }
+        .success-message {
+            color: #155724;
+            background-color: #d4edda;
+            border: 1px solid #c3e6cb;
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <div class="logo">🏥 MedAdmin Portal</div>
+        <form id="loginForm">
+            <input type="email" name="email" placeholder="Admin Email" required>
+            <div class="input-group">
+                <input type="password" id="password" name="password" placeholder="Password" required>
+                <span class="eye-icon" id="eyeIcon">👁️</span>
+            </div>
+            <button type="submit" id="loginBtn">Login</button>
+            <div id="errorMessage" class="message error-message"></div>
+            <div id="successMessage" class="message success-message"></div>
+        </form>
+        <div class="forgot-password">Forgot Password?</div>
+        <div class="info-note">
+            * This information will be given to you by the hospital.
+        </div>
+    </div>
+
+    <script type="module">
+        import { adminLogin } from './js/api.js';
+
+        // Eye function to toggle password visibility
+        function togglePassword() {
+            const passwordInput = document.getElementById('password');
+            const eyeIcon = document.getElementById('eyeIcon');
+            if (passwordInput.type === 'password') {
+                passwordInput.type = 'text';
+                eyeIcon.textContent = '🙈'; // Closed eye for visible
+            } else {
+                passwordInput.type = 'password';
+                eyeIcon.textContent = '👁️'; // Open eye for hidden
+            }
+        }
+
+        // Attach event listener to eye icon
+        document.addEventListener('DOMContentLoaded', function() {
+            const eyeIcon = document.getElementById('eyeIcon');
+            eyeIcon.addEventListener('click', togglePassword);
+        });
+
+        // JavaScript to ensure both fields are filled before enabling submit
+        document.getElementById('loginForm').addEventListener('input', function() {
+            const email = document.querySelector('input[name="email"]').value.trim();
+            const password = document.getElementById('password').value.trim();
+            const loginBtn = document.getElementById('loginBtn');
+            if (email && password) {
+                loginBtn.disabled = false;
+            } else {
+                loginBtn.disabled = true;
+            }
+        });
+
+        // Initial state: disable button if fields are empty
+        document.getElementById('loginBtn').disabled = true;
+
+        // Form submission with API integration
+        document.getElementById('loginForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            const email = document.querySelector('input[name="email"]').value.trim();
+            const password = document.getElementById('password').value.trim();
+            const loginBtn = document.getElementById('loginBtn');
+            const errorMessage = document.getElementById('errorMessage');
+            const successMessage = document.getElementById('successMessage');
+
+            loginBtn.disabled = true;
+            errorMessage.style.display = 'none';
+            successMessage.style.display = 'none';
+
+            try {
+                const response = await adminLogin(email, password);
+                localStorage.setItem('token', response.token);
+                localStorage.setItem('adminLoggedIn', 'true');
+
+                if (typeof updateNavbar === 'function') {
+                    updateNavbar();
+                }
+
+                // Show success message briefly
+                successMessage.textContent = 'Login successful! Redirecting to dashboard...';
+                successMessage.style.display = 'block';
+                setTimeout(() => {
+                    window.location.href = 'dashboard.html';
+                }, 1500);
+            } catch (error) {
+                console.error('Login failed:', error);
+                errorMessage.textContent = 'Invalid email or password. Please check your credentials and try again.';
+                errorMessage.style.display = 'block';
+            } finally {
+                loginBtn.disabled = false;
+            }
+        });
+    </script>
+</body>
+</html>

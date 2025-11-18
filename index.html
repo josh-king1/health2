@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <!-- Bootstrap Icons for user icon -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+    <div class="containee">
+        <nav class="navbar navbar-expand-lg bg-body-tertiary sticky-top ">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="#"><b class="text-capitalize">Maternal Health Monitoring System</b></a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false"
+                    aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse justify-content-center" id="navbarNavDropdown">
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="#home">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#about">About us</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#service">Service</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#contactus">Contact Us</a>
+                        </li>
+                        <li class="nav-item dropdown logged-out">
+                            <a class="nav-link dropdown-toggle" href="" role="button" data-bs-toggle="dropdown"
+                                aria-expanded="false">
+                                My Records
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="create-record.html">Create Records</a></li>
+                                <li><a class="dropdown-item" href="Acess-form.html">Access Records</a></li>
+                            </ul>
+                        </li>
+                        <!-- User Profile dropdown - shown only when logged in -->
+                        <li class="nav-item dropdown logged-in" hidden>
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                <i class="bi bi-person-circle"></i>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="profile-view.html">Profile</a></li>
+                                <li><a class="dropdown-item" href="Acess-form.html">Access Records</a></li>
+                                <li><a class="dropdown-item" href="create-record.html">Create Records</a></li>
+                                <li><hr class="dropdown-divider"></li>
+                                <li><a class="dropdown-item" href="#" onclick="logout()">Logout</a></li>
+                              
+                                
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <div class="home" id="home">
+            <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
+                <div class="carousel-inner">
+                    <div class="carousel-item active c-item">
+                        <img src="./image/home1.jpg" class="d-block w-100 c-img" alt="...">
+                        <div class="carousel-caption top-0 mt-4">
+                            <h1 class="display-1 fw-bolder">Maternal Health Monitoring System</h1>
+                             <a href="#service"><button type="button" class="btn btn-primary px-4 py-2 fw-bolder" data-bs-toggle="modal"
+                                data-bs-target="#exampleModal">VIEW SERVICE</button></a>
+                        </div>
+                    </div>
+                    <div class="carousel-item c-item">
+                        <img src="./image/home2.jpg" class="d-block w-100 c-img" alt="...">
+                        <div class="carousel-caption top-0 mt-4 ">
+                            <h1 class="display-1 fw-bolder">Maternal Health Monitoring System</h1>
+                             <a href="#service"><button type="button" class="btn btn-primary px-4 py-2 fw-bolder" data-bs-toggle="modal"
+                                data-bs-target="#exampleModal">VIEW SERVICE</button></a>
+                        </div>
+                    </div>
+                    <div class="carousel-item c-item">
+                        <img src="./image/home3.jpg" class="d-block w-100 c-img" alt="...">
+                        <div class="carousel-caption top-0 mt-4">
+                            <h1 class="display-1 fw-bolder">Maternal Health Monitoring System</h1>
+                            <a href="#service"><button type="button" class="btn btn-primary px-4 py-2 fw-bolder" data-bs-toggle="modal"
+                                data-bs-target="#exampleModal">VIEW SERVICE</button></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="about" id="about">
+            <h2 class="text-center fw-bolder mb-4 mt-4 text-primary">About Us</h2>
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6">
+                        <img src="./image/home2.jpg" class="img-fluid about-img" alt="About Us Image">
+                    </div>
+                    <div class="col-md-6 d-flex align-items-center">
+                        <div>
+                            <span>Empowering maternal health</span>
+                            <h2 class="text-primary fw-bolder">Innovative monitoring <br> solutions</h2>
+                            <p class="about-text">At Maternal Health Monitoring System, we specialize in designing and
+                                implementing advanced maternal health monitoring tools. Our system is tailored to
+                                identify, track, and manage risks among pregnant and postpartum women. By leveraging
+                                vital sign data, symptoms, medical history, and categorization results through our
+                                mobile applications, we empower healthcare workers to classify women into low, moderate,
+                                or high-risk categories. Our commitment to maternal health ensures that every woman
+                                receives the care and attention she deserves, enhancing outcomes for mothers and their
+                                children.
+                            </p>
+                            <a href="#service"><button type="button" class="btn btn-primary px-4 py-2 fw-bolder"  href data-bs-toggle="modal"
+                                data-bs-target="#exampleModal">VIEW SERVICE</button></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="serivce bg-body-tertiary pt-md-5" id="service">
+            <h2 class="text-center fw-bolder mb-4 mt-4 text-black">Our Service</h2>
+            <div class="ser text-center mb-3">
+                <h4 class="text-primary">Comprehensive Monitoring</h4>
+            <h1 class="fw-bolder">Empowering maternal health solutions</h1>
+            </div>
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg">
+                        <div class="card">
+                            <img src="./image/home1.jpg" class="card-img-top" alt="...">
+                            <div class="card-body">
+                                <h5 class="card-title text-primary">Maternal health risk assessment</h5>
+                                <p class="card-text">Our Maternal Health Risk Assessment service utilizes advanced
+                                    technology to evaluate the health risks of pregnant and postpartum women. By
+                                    collecting vital signs, symptoms, and medical history through mobile applications,
+                                    we ensure comprehensive data collection. Our system analyzes this information using
+                                    a rule-based risk engine to classify women into low, moderate, or high-risk
+                                    categories based on clinical indicators. This proactive approach enables healthcare
+                                    providers to tailor interventions and support for women at different risk levels,
+                                    ensuring a safer maternal health experience.
+
+                                </p>
+                                <a href="#" class="btn btn-primary" data-bs-toggle="modal"
+                                    data-bs-target="#exampleModal">Read More</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg">
+                        <div class="card">
+                            <img src="./image/home2.jpg" class="card-img-top" alt="...">
+                            <div class="card-body">
+                                <h5 class="card-title text-primary">Mobile data collection Website</h5>
+                                <p class="card-text">Our Mobile Data Collection Website empowers pregnant and
+                                    postpartum women to easily record their vital signs, symptoms, and medical history.
+                                    This user-friendly app simplifies the process of documenting essential health
+                                    information, ensuring accurate and timely data input. The collected data feeds
+                                    directly into our maternal health monitoring system, enabling healthcare providers
+                                    to assess risk levels effectively. This innovative technology not only enhances
+                                    patient engagement but also fosters better communication between patients.</p>
+                                <a href="#" class="btn btn-primary" data-bs-toggle="modal"
+                                    data-bs-target="#exampleModal">Read More</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg">
+                        <div class="card">
+                            <img src="./image/home3.jpg" class="card-img-top" alt="...">
+                            <div class="card-body">
+                                <h5 class="card-title text-primary">Tailored maternal health management plans</h5>
+                                <p class="card-text">Our Tailored Maternal Health Management Plans are designed to
+                                    provide personalized care for pregnant and postpartum women based on their assessed
+                                    risk levels. Using the insights gained from our risk assessment and data collection,
+                                    healthcare providers can develop specific management plans that address the unique
+                                    needs of each woman. These plans may include lifestyle recommendations, monitoring
+                                    schedules, and medical interventions as necessary. By focusing on individualized
+                                    care, we aim to enhance maternal health outcomes.</p>
+                                <a href="#" class="btn btn-primary" data-bs-toggle="modal"
+                                    data-bs-target="#exampleModal">Read More</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    <div class="container mt-5 mb-5" id="contactus">
+  <h1 class="text-center text-primary mb-5">Contact Us</h1>
+  <div class="row g-4">
+    <!-- Contact Form -->
+    <div class="contact-form col-lg-5 col-md-6 bg-body-tertiary p-4 rounded shadow-sm">
+      <form action="">
+        <h2 class="text-center fw-bolder mb-4 mt-2 text-primary">Get in Touch</h2>
+        <div class="mb-3">
+          <label for="exampleInputName" class="form-label">Name</label>
+          <input type="text" class="form-control" id="exampleInputName" aria-describedby="nameHelp">
+        </div>
+        <div class="mb-3">
+          <label for="exampleInputEmail1" class="form-label">Email address</label>
+          <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+        </div>
+        <div class="mb-3">
+          <label for="exampleInputMessage" class="form-label">Message</label>
+          <textarea class="form-control" id="exampleInputMessage" rows="4"></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary w-100">Submit</button>
+      </form>
+    </div>
+
+    <!-- Map -->
+    <div class=" map col-lg-6 col-md-6 offset-lg-1 bg-body-tertiary p-4 rounded shadow-sm">
+      <iframe
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1982.8239732634282!2d36.82194667619487!3d-1.2920656999999990!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x182f10dfb5d6b8b5%3A0x5e4c6b8e4e6f8e0!2sNairobi%2C%20Kenya!5e0!3m2!1sen!2sus!4v1700000000000!5m2!1sen!2sus"
+        width="100%" height="100%" style="border:0; min-height: 400px;" allowfullscreen="" loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade">
+      </iframe>
+    </div>
+  </div>
+</div>
+            <footer>
+                <div class="text-center p-4 bg-primary text-white mt-4">
+                    © 2024 Maternal Health Monitoring System. All rights reserved.
+            </footer>
+    </div>
+</body>
+<script>
+    // Toggle navbar items based on admin login state stored in localStorage
+    function setAdminLogin() {
+        localStorage.setItem('adminLoggedIn', 'true');
+        updateNavbar();
+    }
+
+    function logout() {
+        localStorage.removeItem('adminLoggedIn');
+        localStorage.removeItem('mhms_token');
+        updateNavbar();
+        // Redirect to home page after logout
+        window.location.href = 'index.html';
+    }
+
+    function updateNavbar() {
+        // Consider an admin logged in if either the explicit flag is set
+        // or a token exists in localStorage (set at login)
+        const isLoggedIn = localStorage.getItem('adminLoggedIn') === 'true' || !!localStorage.getItem('mhms_token');
+        const loggedOutEls = document.querySelectorAll('.logged-out');
+        const loggedInEls = document.querySelectorAll('.logged-in');
+
+        // Toggle both the Bootstrap utility class and the HTML hidden attribute
+        loggedOutEls.forEach(el => {
+            if (isLoggedIn) {
+                el.classList.add('d-none');
+                el.hidden = true;
+            } else {
+                el.classList.remove('d-none');
+                el.hidden = false;
+            }
+        });
+
+        loggedInEls.forEach(el => {
+            if (isLoggedIn) {
+                el.classList.remove('d-none');
+                el.hidden = false;
+            } else {
+                el.classList.add('d-none');
+                el.hidden = true;
+            }
+        });
+    }
+
+    document.addEventListener('DOMContentLoaded', updateNavbar);
+</script>
+    <!-- scroll reveal JS -->
+    <script src="https://unpkg.com/scrollreveal"></script>
+    <script src="./js/scroll.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+    crossorigin="anonymous"></script>
+
+</html>

@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Maternal Health Monitoring System</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    body {
+      background-color: #f8f9fa;
+    }
+
+    .form-container {
+      max-width: 700px;
+      margin: 50px auto;
+      background-color: white;
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+      overflow: hidden;
+      /* hides any overflow */
+    }
+
+    .form-title {
+      text-align: center;
+      color: #007bff;
+      font-weight: 700;
+      margin-bottom: 20px;
+    }
+  </style>
+</head>
+
+<body class="">
+
+  <div class="container ">
+    <div class="form-container">
+      <h2 class="form-title">Maternal Health Monitoring Form</h2>
+      <div id="status" class="mb-3 alert" style="display: none;"></div>
+      <form id="recordForm" action="#" method="post">
+
+        <h2 class="text-center fw-bold form-title">Mother Details</h2>
+        <div class="row mb-3">
+          <div class="col">
+            <label for="motherName" class="form-label">Mother's Full Name</label>
+            <input type="text" class="form-control" id="motherName" required>
+          </div>
+          <div class="col">
+            <label for="age" class="form-label">Age</label>
+            <input type="number" class="form-control" id="age" min="15" max="60" required>
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label for="address" class="form-label">Address</label>
+          <input type="text" class="form-control" id="address" required>
+        </div>
+
+        <div class="row mb-3">
+          <div class="col">
+            <label for="phone" class="form-label">Phone Number</label>
+            <input type="tel" class="form-control" id="phone" placeholder="+234..." required>
+          </div>
+          <div class="col">
+            <label for="email" class="form-label">Email</label>
+            <input type="email" class="form-control" id="email">
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <div class="col">
+            <label for="bloodGroup" class="form-label">Blood Group</label>
+            <select id="bloodGroup" class="form-select" required>
+              <option value="">Select blood group...</option>
+              <option value="A+">A+</option>
+              <option value="A-">A-</option>
+              <option value="B+">B+</option>
+              <option value="B-">B-</option>
+              <option value="AB+">AB+</option>
+              <option value="AB-">AB-</option>
+              <option value="O+">O+</option>
+              <option value="O-">O-</option>
+            </select>
+          </div>
+          <div class="col">
+            <label for="genotype" class="form-label">Genotype</label>
+            <select id="genotype" class="form-select" required>
+              <option value="">Select genotype...</option>
+              <option value="AA">AA</option>
+              <option value="AS">AS</option>
+              <option value="SS">SS</option>
+              <option value="AC">AC</option>
+              <option value="SC">SC</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <div class="col">
+            <label for="bloodPressure" class="form-label">Blood Pressure (mmHg)</label>
+            <input type="text" class="form-control" id="bloodPressure" placeholder="e.g. 120/80">
+          </div>
+          <div class="col">
+            <label for="weight" class="form-label">Weight (kg)</label>
+            <input type="number" class="form-control" id="weight" step="0.1">
+          </div>
+        </div>
+
+
+        <div class="mb-3">
+          <label for="pregnancyStage" class="form-label">Pregnancy Stage</label>
+          <select id="pregnancyStage" class="form-select" required>
+            <option value="">Select stage...</option>
+            <option value="first_trimester">First Trimester (0-13 weeks)</option>
+            <option value="second_trimester">Second Trimester (14-26 weeks)</option>
+            <option value="third_trimester">Third Trimester (27-40 weeks)</option>
+          </select>
+        </div>
+        <h2 class="text-center fw-bold form-title">Next of Kin Details</h2>
+         <div class="row mb-3">
+          <div class="col">
+            <label for="nextOfKinName" class="form-label">Next Of Kin Full Name</label>
+            <input type="text" class="form-control" id="nextOfKinName" required>
+          </div>
+          <div class="col">
+            <label for="nextOfKinPhone" class="form-label">Phone Number</label>
+            <input type="tel" class="form-control" id="nextOfKinPhone" placeholder="+234..." required>
+          </div>
+        </div>
+
+        <div class="mail">
+          <label for="nextOfKinEmail" class="form-label">Email</label>
+          <input type="email" class="form-control" id="nextOfKinEmail">
+        </div>
+
+          <div class="mb-3">
+          <label for="nextOfKinAddress" class="form-label">Address</label>
+          <input type="text" class="form-control" id="nextOfKinAddress" required>
+        </div>
+
+        <h2 class="text-center fw-bold form-title">Medical Details</h2>
+
+        <div class="mb-3">
+          <label for="healthCondition" class="form-label">Health Condition / Notes</label>
+          <textarea class="form-control" id="healthCondition" rows="3"
+            placeholder="Describe any conditions or observations..."></textarea>
+        </div>
+
+        <div class="mb-3">
+          <label for="doctorName" class="form-label">Doctor / Nurse in Charge</label>
+          <input type="text" class="form-control" id="doctorName">
+        </div>
+
+        <button type="submit" class="btn btn-primary w-100" id="submitBtn" disabled>Submit Record</button>
+
+      </form>
+    </div>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script type="module">
+      import { createMaternalRecord } from './js/api.js';
+
+      const token = localStorage.getItem('token');
+      if (!token) {
+          window.location.href = 'Acess-form.html';
+      }
+
+      document.addEventListener('DOMContentLoaded', function() {
+          const status = document.getElementById('status');
+          const submitBtn = document.getElementById('submitBtn');
+
+          // Enable submit only if required fields are filled
+          document.getElementById('recordForm').addEventListener('input', function() {
+              const requiredFields = [
+                  document.getElementById('motherName').value.trim(),
+                  document.getElementById('age').value.trim(),
+                  document.getElementById('address').value.trim(),
+                  document.getElementById('phone').value.trim(),
+                  document.getElementById('bloodGroup').value.trim(),
+                  document.getElementById('genotype').value.trim(),
+                  document.getElementById('pregnancyStage').value.trim(),
+                  document.getElementById('nextOfKinName').value.trim(),
+                  document.getElementById('nextOfKinPhone').value.trim(),
+                  document.getElementById('nextOfKinAddress').value.trim()
+              ];
+              submitBtn.disabled = !requiredFields.every(field => field !== '');
+          });
+      });
+
+      document.querySelector('form').addEventListener('submit', async function (e) {
+          e.preventDefault();
+          const status = document.getElementById('status');
+          const submitBtn = document.getElementById('submitBtn');
+         const payload = {
+    motherName: document.getElementById('motherName')?.value || '',
+    age: parseInt(document.getElementById('age')?.value) || 0,
+    address: document.getElementById('address')?.value || '',
+    phone: document.getElementById('phone')?.value || '',
+    email: document.getElementById('email')?.value || '',
+    bloodGroup: document.getElementById('bloodGroup')?.value || '',
+    genotype: document.getElementById('genotype')?.value || '',
+    bloodPressure: document.getElementById('bloodPressure')?.value || '',
+    weight: parseFloat(document.getElementById('weight')?.value) || 0,
+    pregnancyStage: document.getElementById('pregnancyStage')?.value || '',
+    nextOfKinName: document.getElementById('nextOfKinName')?.value || '',
+    nextOfKinPhone: document.getElementById('nextOfKinPhone')?.value || '',
+    nextOfKinEmail: document.getElementById('nextOfKinEmail')?.value || '',
+    nextOfKinAddress: document.getElementById('nextOfKinAddress')?.value || '',
+    conditionNotes: document.getElementById('healthCondition')?.value || '',
+    doctorInCharge: document.getElementById('doctorName')?.value.trim() || null // <-- from text input
+};
+
+          submitBtn.disabled = true;
+          status.style.display = 'none';
+          try {
+              await createMaternalRecord(payload, token);
+              status.textContent = 'Record submitted successfully.';
+              status.classList.add('alert-success');
+              status.style.display = 'block';
+              setTimeout(() => {
+                  window.location.href = 'index.html'; // Redirect to home page
+              }, 2000);
+          } catch (err) {
+              console.error('Submit failed:', err);
+              status.textContent = 'Failed to submit record: ' + (err.message || err);
+              status.classList.add('alert-danger');
+              status.style.display = 'block';
+          } finally {
+              submitBtn.disabled = false;
+          }
+      });
+  </script>
+  <footer>
+    <div class="text-center p-4 bg-primary text-white mt-4">
+      © 2024 Maternal Health Monitoring System. All rights reserved.
+  </footer>
+</body>
+</html>
